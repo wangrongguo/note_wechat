@@ -1,6 +1,7 @@
 // 查看事件文档https://developers.weixin.qq.com/miniprogram/dev/api/media/editor/EditorContext.html
-const util = require('../../utils/util.js')
+const util = require('../../utils/util.js');
 const app = getApp();
+const na_backcolor = app.data.na_backcolor; //颜色
 Page({
   data: {
     formats: {},
@@ -8,6 +9,14 @@ Page({
     readOnly: false,
     placeholder: '介绍一下你的详情吧，支持文字和图片...',
     _focus: false,
+    na_tabbar: {
+      na_loading: false,
+      na_show: true,
+      na_animated: true,
+      na_back: true,
+      na_backcolor: na_backcolor,
+      na_text: '祺弄便利签'
+    }
   },
   readOnlyChange() {
     this.setData({
@@ -126,19 +135,20 @@ Page({
         console.log(res)
         var nodeListDate = {
           id:new Date().getTime(),
-          title:res.text.substring(0,10),
+          title:res.text.length >= 10 ? res.text.substring(0,10)+'...' : res.text,
           content:res.html,
-          create_time:util.formatTime(new Date())
+          create_time:util.formatTime(new Date()),
+          is_show: true
         }
         var nld = wx.getStorageSync('nodeListDate');
         console.log(nld);
         if(nld == ""){
           nld = [];
         }
-        nld.push(nodeListDate);
+        nld.unshift(nodeListDate);
         wx.setStorageSync('nodeListDate', nld);
-        wx.navigateTo({
-          url: '../node_list/node_list'
+        wx.navigateBack({
+          delta: 1,
         })
       },
       fail: (res) => {

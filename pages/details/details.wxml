@@ -1,5 +1,10 @@
 <!--pages/details/details.wxml-->
-<rich-text nodes="{{html}}" ></rich-text>
-<view class="ajc">
-<button  type="primary" bindtap="back">返回</button>
+<!--顶部导航模板-->
+<import src="../../template/na_tabBar_template.wxml" />
+<template is="na_tabBar_template" data="{{na_tabbar}}" />
+<view style="padding:20px;">
+	<rich-text nodes="{{html}}"></rich-text>
+</view>
+<view class="ajc" style="margin-top:30px;">
+	<button type="primary" bindtap="back">返回</button>
 </view>

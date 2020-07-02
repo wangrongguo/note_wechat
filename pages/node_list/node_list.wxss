@@ -3,6 +3,41 @@
 @import "../../app.wxss";
 .img_plus{
   width: 40px;
+  height: 40px;
   float: right;
   top: 0px;
 }
+
+
+movable-area {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 600px;
+  }
+  
+  movable-view {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: #E1FFFF;
+    z-index: 999;
+    border-radius: 100%;
+    }
+    
+    .weui-loadmore__tips_in-line {
+      position: relative;
+      top: -.9em;
+      padding: 0 0.55em;
+      background-color: #E1FFFF;
+      color: #999;
+    }
+    
+    .finish_cell{
+      opacity: 0.4;
+      color: #999;
+    }

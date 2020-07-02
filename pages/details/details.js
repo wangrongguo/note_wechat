@@ -1,21 +1,44 @@
 // pages/details/details.js
 const app = getApp();
+const na_backcolor = app.data.na_backcolor; //颜色
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    na_tabbar: {
+      na_loading: false,
+      na_show: true,
+      na_animated: true,
+      na_back: true,
+      na_backcolor: na_backcolor,
+      na_text: '祺弄便利签'
+    },
+    html:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      html: app.globalData.html
-    })
+    console.log(options.note_id)
+    var that =this;
+    if(options.note_id){
+      var nodeListDate = wx.getStorageSync('nodeListDate');
+        for (let index = 0; index < nodeListDate.length; index++) {
+          const element = nodeListDate[index];
+          if (element.id == options.note_id) {
+            that.setData({
+              html: element.content
+            })
+          }
+        }
+    }else{
+      that.setData({
+        html: app.globalData.html
+      })
+    }
   },
  // 返回0
  back(){
