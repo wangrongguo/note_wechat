@@ -1,0 +1,8 @@
+/* pages/node_list/node_list.wxss */
+@import "../../style/weui.wxss";
+@import "../../app.wxss";
+.img_plus{
+  width: 40px;
+  float: right;
+  top: 0px;
+}
